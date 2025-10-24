@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title is-1">Todo App</h1>
+
+        <h2 class="title">Create new task</h2>
+
+        <div class="field is-grouped">
+          <div class="control is-expanded">
+            <input
+              type="search"
+              class="input"
+              placeholder="Create new task"
+              id="itemInput"
+            />
+          </div>
+          <div class="control">
+            <button type="button" class="button is-primary" id="addBtn">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="field is-grouped">
+          <div class="control has-icons-left is-expanded">
+            <input
+              type="search"
+              class="input"
+              placeholder="Search..."
+              id="searchInput"
+            />
+            <span class="icon is-small is-left">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <div class="control">
+            <button type="button" class="button" id="exportBtn">Export</button>
+          </div>
+        </div>
+
+        <ul
+          id="list"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px 12px 0;
+          "
+        ></ul>
+      </div>
+    </section>
+
+    <script
+      src="https://kit.fontawesome.com/0a68914c88.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
