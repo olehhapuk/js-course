@@ -6,7 +6,7 @@ const refs = {
   addBtn: document.querySelector('#addBtn'),
 };
 
-const items = [
+let items = [
   {
     id: 1,
     text: 'Купити Лимони',
@@ -73,45 +73,64 @@ function createItemElem(item) {
 function renderItems(filteredItems) {
   refs.list.innerHTML = '';
 
-  for (const item of filteredItems) {
-    const itemElem = createItemElem(item);
-    refs.list.append(itemElem);
-  }
+  // for (const item of filteredItems) {
+  //   const itemElem = createItemElem(item);
+  //   refs.list.append(itemElem);
+  // }
+
+  const itemsElems = filteredItems.map((item) => createItemElem(item));
+  refs.list.append(...itemsElems);
 }
 
 function deleteItem(itemId) {
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].id === itemId) {
-      items.splice(i, 1);
-      renderItems(getFilteredItems());
-      break;
-    }
-  }
+  items = items.filter((item) => item.id !== itemId);
+  renderItems(getFilteredItems());
+
+  // for (let i = 0; i < items.length; i++) {
+  //   if (items[i].id === itemId) {
+  //     items.splice(i, 1);
+  //     renderItems(getFilteredItems());
+  //     break;
+  //   }
+  // }
 }
 
 function updateItem(itemId, isCompleted) {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+  // for (let i = 0; i < items.length; i++) {
+  //   const item = items[i];
+  //   if (item.id === itemId) {
+  //     item.isCompleted = isCompleted;
+  //     break;
+  //   }
+  // }
+
+  items = items.map((item) => {
     if (item.id === itemId) {
-      item.isCompleted = isCompleted;
-      break;
+      return {
+        ...item,
+        isCompleted,
+      };
+    } else {
+      return item;
     }
-  }
+  });
 
   renderItems(getFilteredItems());
 }
 
 function getFilteredItems() {
-  const filteredItems = [];
+  // const filteredItems = [];
 
-  for (const item of items) {
-    const match = item.text.toLowerCase().includes(search.toLowerCase());
-    if (match) {
-      filteredItems.push(item);
-    }
-  }
+  // for (const item of items) {
+  //   const match = item.text.toLowerCase().includes(search.toLowerCase());
+  //   if (match) {
+  //     filteredItems.push(item);
+  //   }
+  // }
 
-  return filteredItems;
+  return items.filter((item) =>
+    item.text.toLowerCase().includes(search.toLowerCase())
+  );
 }
 
 function handleAdd() {
